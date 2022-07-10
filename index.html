@@ -4,18 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>High Tech Studios</title>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <script src=
+        "https://smtpjs.com/v3/smtp.js">
+    </script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: black;
+            background-image:
+            url('defaultBackground.jpg');
+            background-size: cover;
             color: white; 
             display: grid;
-            place-content: center;
+            place-content: end;
             height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            background: #00B0FF;
+        }
+
+        .background {
+            display: grid;
+            place-items: center;
+            padding:0;
+            align-content: center;
+            font-family: 'Quicksand';
+            background-color: #565656;
+            opacity: 0.75;
+            color: white;
+            height: 300px;
+            width: 100vw;
+        }
+
+        h1 {
+            color: #00B0FF;
+        }
+
+        .button-10 {
+          padding: 6px 14px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+          border-radius: 6px;
+          border: none;
+          height: 50px;
+          color: #fff;
+          background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+           background-origin: border-box;
+          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+        }
+
+        .form__group {
+          padding: 15px 0 0;
+          margin-top: 10px;
+        }
+
+        .form__field {
+          font-family: inherit;
+          border: black solid 1px;
+          outline: 0;
+          font-size: 1.3rem;
+          color: $white;
+          padding: 7px 0;
+          background: transparent;
+          transition: border-color 0.2s;
+
+          &::placeholder {
+            color: transparent;
+          }
+
+          &:placeholder-shown ~ .form__label {
+            font-size: 1.3rem;
+            cursor: text;
+            top: 20px;
+          }
+        }
+
+        .form__label {
+          display: block;
+          transition: 0.2s;
+          font-size: 1rem;
+          color: $gray;
+        }
+
+        .form__field:focus {
+          ~ .form__label {
+            display: block;
+            transition: 0.2s;
+            font-size: 1rem;
+            color: $primary;
+            font-weight:700;
+          }
+          padding-bottom: 6px;
+          font-weight: 700;
+          border-width: 3px;
+          border-image: linear-gradient(to right, $primary,$secondary);
+          border-image-slice: 1;
+        }
+        /* reset input */
+        .form__field{
+          &:required,&:invalid { box-shadow:none; }
         }
     </style>
 </head>
 <body>
-    <h1>Site Under Construction!</h1>
+    <div class="background">
+        <h1>New Training Modules on the Way !</h1>
+        <p>Enter your email below for latest updates</p>
+    <form method="post" class="form__group field">
+        <span>
+        <input type="text" placeholder="Please Enter Email" class="form__field" />
+        <input class="button-10" type="button" value="Send Email"
+        onclick="sendEmail()" />
+        </span>
+  </form>
+    </div>
+  <script type="text/javascript">
+    function sendEmail() {
+      Email.send({
+        SecureToken: "74039aad-1cee-4dc5-ba98-b116db2c7b1b",
+        To: 'emmanuel.mbaba32@gmail.com',
+        From: "manolombaba@gmail.com",
+        Subject: "Sending Email using javascript",
+        Body: "Well that was easy!!",
+      })
+        .then(function (message) {
+          alert("mail sent successfully")
+        });
+    }
+  </script>
 </body>
 </html>
